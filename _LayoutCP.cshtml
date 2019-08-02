@@ -1,0 +1,154 @@
+@using System.Configuration;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+    <title>CP Sky Analytics</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets-v4/images/icons/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets-v4/images/icons/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets-v4/images/icons/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/assets-v4/images/icons/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="/assets-v4/sky/images/icons/Sky-Logo-Box.png">
+
+        @Styles.Render("~/bundles/css")
+        @Styles.Render("~/bundles/less")
+
+        <link rel="stylesheet" type="text/css" href="/assets-v4/icons/fontawesome/fontawesome.css">
+        <link rel="stylesheet" type="text/css" href="/assets-v4/icons/linecons/linecons.css">
+        <link rel="stylesheet" type="text/css" href="/assets-v4/icons/spinnericon/spinnericon.css">
+        <link rel="stylesheet" type="text/css" href="/assets-v4/icons/elusive/elusive.css">
+        <link rel="stylesheet" type="text/css" href="/assets-v4/icons/typicons/typicons.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+        @RenderSection("cssHeader", false)
+
+        @Scripts.Render("~/bundles/jscore")
+
+        @RenderSection("jsHeader", false)
+
+
+
+    @{
+        string gtmauth = ConfigurationManager.AppSettings["gtm:gt_auth"];
+    }
+
+    <!-- Google Tag Manager -->
+        <script>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || []; w[l].push({
+                    'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+                }); var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                        'https://www.googletagmanager.com/gtm.js?id=' + i + dl + '&gtm_auth=@Html.Raw(gtmauth)&gtm_cookies_win=x'; f.parentNode.insertBefore(j, f);
+            })(window, document, 'script',
+                'dataLayer', 'GTM-MRCCHGV');
+        </script>
+    <!-- End Google Tag Manager -->
+
+</head>
+
+<body>
+
+        <!-- Google Tag Manager (noscript) -->
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MRCCHGV&gtm_auth=@Html.Raw(gtmauth)&gtm_cookies_win=x"
+                    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
+        <!-- End Google Tag Manager (noscript) -->
+
+    <div id="sb-site">
+        <div id="page-wrapper">
+
+            <!-- ========================== NAVBAR ========================== -->
+
+            <nav class="navbar navbar-expand-lg navbar-toggleable-md bg-purple navbar-light bg-light ">
+                <div id="header-logo" class="navbar-brand">
+                    <a href="/" class="logo-content-big" title="Sky Media Analytics">
+                    </a>
+                </div>
+                <button id="nav-toggle" class="collapsed navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span></span></button>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <!-- <div class="toggleMenu">Menu</div> -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    @Html.Action("MainNav", "Home")
+
+                    <ul class="navbar-nav">
+                        @Html.Action("NotificationNavItem", "Home")
+                        @Html.Action("HelpNavItem", "Home")
+
+                        @Html.Action("TrialPeriodInfo", "Home")
+
+                        @Html.Action("AdminNavItem", "Home")
+                        <li class="nav-item ">
+                            <a id="btnLogout" class="nav-link nav-link-colour link-hover mr-4" href="@Url.Action("SignOut", "Account")" role="button" aria-haspopup="true" aria-expanded="false">
+                                Sign out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+
+            <!-- ========================== NAVBAR ========================== -->
+
+
+            <v-app>
+
+                <v-content>
+                @RenderBody()
+                </v-content>
+
+             </v-app>
+
+            <footer class="d-flex justify-content-center w-100">
+                <div style="text-align: center;">
+                    <a class="nav-link disabled" style="display:inline-block;">© 2019 Sky UK</a>
+                    <a class="nav-link" href="https://www.sky.com/help/articles/sky-privacy-and-cookies-notice" target="_blank" style="display:inline-block;">Privacy & Cookies Notice</a>
+                    <a class="nav-link" href="@Url.Action("Index", "Terms")" target="_blank" style="display:inline-block;">Terms & Conditions</a>
+                </div>
+            </footer>
+
+        </div>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVvUE8HMMbTEsOrxRTw0EOYy6Q5Jt10gk" async defer></script>
+        <script src="../../assets-v5/bundle/vue-bundle-v=@(ViewBag.Version).js"></script>
+
+
+        <!-- This script gives errors when Bootstrap not included -->
+        <!-- @Scripts.Render("~/bundles/jsui") -->
+
+        @Scripts.Render("~/bundles/jssky")
+        @RenderSection("bodyFooter", false)
+
+    </div>
+
+    @* Session timeout notifications: *@
+    <script type="text/javascript" src="../../assets-v4/sky/js/lib/jquery-userTimeout/jquery.userTimeout.js"></script>
+
+    <!-- This script gives errors when Bootstrap not included -->
+    <!-- <script type="text/javascript" src="../../assets-v4/sky/js/user-timeout.js"></script> -->
+    @*GA Script for setting User Type and User ID*@
+    <script>
+        var GET_USER_ID = '@Html.Action("GetUserId", "Home")';
+        var GET_USER_TYPE_ID = @Html.Action("GetUserType", "Home");
+
+        dataLayer.push({ 'userID': GET_USER_ID, 'userTypeID': GET_USER_TYPE_ID});
+
+        console.log('hellloooooo CP')
+
+
+    </script>
+    <input id="backbuttonstate" type="text" value="0" style="display:none;" />
+    @Html.Action("SuccessMessage", "Home")
+    @Html.Action("ErrorMessage", "Home")
+
+    <script src="../../assets-v4\sky\bootstrap-hacks\nav.js"></script>
+    <link href="../../assets-v4\sky\bootstrap-hacks\nav-style.css" type="text/css" rel="stylesheet">
+
+</body>
+</html>

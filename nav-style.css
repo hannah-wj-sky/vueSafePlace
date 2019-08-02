@@ -1,0 +1,57 @@
+.hyplink:hover {
+    color: #0275d8 !important;
+    background-color: none !important;
+    background: none !important;
+}
+
+.toggleMenu {
+    display: none;
+    list-style: none;
+    position: relative;
+    line-height: 1;
+    font-size: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 20px;
+    margin: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: #efefef;
+    color: #757575;
+    cursor: pointer;
+}
+.toggleMenu::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: block;
+    width: 15px;
+    height: 2px;
+    background: #000000;
+}
+.toggleMenu::before {
+    content: '';
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    display: block;
+    width: 15px;
+    height: 3px;
+    border-top: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .dropdown > .dropdown-menu:after, .minicolors-position-bottom .minicolors-panel:after {
+        display: none !important;
+    }
+
+    body {
+        color: red;
+    }
+
+}
